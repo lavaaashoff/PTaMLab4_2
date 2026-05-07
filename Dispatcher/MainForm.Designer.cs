@@ -35,7 +35,7 @@
             this.panelCharts.SuspendLayout();
             this.SuspendLayout();
 
-            // panelTop
+            // panelTop.
             this.panelTop.Controls.Add(this.buttonConnect);
             this.panelTop.Controls.Add(this.buttonDisconnect);
             this.panelTop.Controls.Add(this.labelStatus);
@@ -44,7 +44,7 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.TabIndex = 0;
 
-            // buttonConnect
+            // buttonConnect.
             this.buttonConnect.Location = new System.Drawing.Point(5, 6);
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(120, 28);
@@ -53,7 +53,7 @@
             this.buttonConnect.UseVisualStyleBackColor = true;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
 
-            // buttonDisconnect
+            // buttonDisconnect.
             this.buttonDisconnect.Enabled = false;
             this.buttonDisconnect.Location = new System.Drawing.Point(135, 6);
             this.buttonDisconnect.Name = "buttonDisconnect";
@@ -63,14 +63,14 @@
             this.buttonDisconnect.UseVisualStyleBackColor = true;
             this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
 
-            // labelStatus
+            // labelStatus.
             this.labelStatus.AutoSize = true;
             this.labelStatus.Location = new System.Drawing.Point(270, 12);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.TabIndex = 2;
             this.labelStatus.Text = "Статус: Отключено";
 
-            // panelValues
+            // panelValues.
             this.panelValues.Controls.Add(this.labelTempTitle);
             this.panelValues.Controls.Add(this.labelTemperature);
             this.panelValues.Controls.Add(this.labelPressTitle);
@@ -80,35 +80,35 @@
             this.panelValues.Name = "panelValues";
             this.panelValues.TabIndex = 1;
 
-            // labelTempTitle
+            // labelTempTitle.
             this.labelTempTitle.AutoSize = true;
             this.labelTempTitle.Location = new System.Drawing.Point(5, 8);
             this.labelTempTitle.Name = "labelTempTitle";
             this.labelTempTitle.TabIndex = 0;
             this.labelTempTitle.Text = "Температура:";
 
-            // labelTemperature
+            // labelTemperature.
             this.labelTemperature.AutoSize = true;
             this.labelTemperature.Location = new System.Drawing.Point(95, 8);
             this.labelTemperature.Name = "labelTemperature";
             this.labelTemperature.TabIndex = 1;
             this.labelTemperature.Text = "—";
 
-            // labelPressTitle
+            // labelPressTitle.
             this.labelPressTitle.AutoSize = true;
             this.labelPressTitle.Location = new System.Drawing.Point(230, 8);
             this.labelPressTitle.Name = "labelPressTitle";
             this.labelPressTitle.TabIndex = 2;
             this.labelPressTitle.Text = "Давление:";
 
-            // labelPressure
+            // labelPressure.
             this.labelPressure.AutoSize = true;
             this.labelPressure.Location = new System.Drawing.Point(305, 8);
             this.labelPressure.Name = "labelPressure";
             this.labelPressure.TabIndex = 3;
             this.labelPressure.Text = "—";
 
-            // panelCharts — Fill, дочерние элементы раскладываются в panelCharts_Resize
+            // panelCharts — Fill, дочерние элементы раскладываются в panelCharts_Resize.
             this.panelCharts.Controls.Add(this.labelTempChart);
             this.panelCharts.Controls.Add(this.panelChartTemperature);
             this.panelCharts.Controls.Add(this.labelPressChart);
@@ -117,34 +117,34 @@
             this.panelCharts.Name = "panelCharts";
             this.panelCharts.TabIndex = 2;
             this.panelCharts.Resize += new System.EventHandler(this.panelCharts_Resize);
-
-            // labelTempChart
+            
+            // labelTempChart.
             this.labelTempChart.AutoSize = true;
             this.labelTempChart.Name = "labelTempChart";
             this.labelTempChart.TabIndex = 0;
             this.labelTempChart.Text = "Температура (°C)";
 
-            // panelChartTemperature
+            // panelChartTemperature.
             this.panelChartTemperature.BackColor = System.Drawing.Color.White;
             this.panelChartTemperature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelChartTemperature.Name = "panelChartTemperature";
             this.panelChartTemperature.TabIndex = 1;
             this.panelChartTemperature.Paint += new System.Windows.Forms.PaintEventHandler(this.panelChartTemperature_Paint);
 
-            // labelPressChart
+            // labelPressChart.
             this.labelPressChart.AutoSize = true;
             this.labelPressChart.Name = "labelPressChart";
             this.labelPressChart.TabIndex = 2;
             this.labelPressChart.Text = "Давление (атм)";
 
-            // panelChartPressure
+            // panelChartPressure.
             this.panelChartPressure.BackColor = System.Drawing.Color.White;
             this.panelChartPressure.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelChartPressure.Name = "panelChartPressure";
             this.panelChartPressure.TabIndex = 3;
             this.panelChartPressure.Paint += new System.Windows.Forms.PaintEventHandler(this.panelChartPressure_Paint);
 
-            // MainForm
+            // MainForm.
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 560);

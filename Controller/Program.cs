@@ -74,7 +74,7 @@ namespace Controller
             }
             catch (Exception)
             {
-                // Клиент отключился
+                // Клиент отключился.
             }
             finally
             {

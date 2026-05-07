@@ -27,10 +27,7 @@ namespace Dispatcher
             InitializeComponent();
         }
 
-        // ----------------------------------------------------------------
-        // Обработчики формы
-        // ----------------------------------------------------------------
-
+        // Обработчики формы.
         private void MainForm_Load(object sender, EventArgs e)
         {
             LayoutCharts();
@@ -41,10 +38,7 @@ namespace Dispatcher
             Disconnect();
         }
 
-        // ----------------------------------------------------------------
-        // Разметка графиков — вызывается при загрузке и при изменении размера
-        // ----------------------------------------------------------------
-
+        // Разметка графиков — вызывается при загрузке и при изменении размера.
         private void panelCharts_Resize(object sender, EventArgs e)
         {
             LayoutCharts();
@@ -64,20 +58,17 @@ namespace Dispatcher
                 return;
             }
 
-            // График температуры
+            // График температуры.
             labelTempChart.Location = new Point(margin, margin);
             panelChartTemperature.SetBounds(margin, margin + labelH, w, halfH);
 
-            // График давления
+            // График давления.
             int secondTop = margin + labelH + halfH + margin;
             labelPressChart.Location = new Point(margin, secondTop);
             panelChartPressure.SetBounds(margin, secondTop + labelH, w, halfH);
         }
 
-        // ----------------------------------------------------------------
-        // Обработчики кнопок
-        // ----------------------------------------------------------------
-
+        // Обработчики кнопок.
         private void buttonConnect_Click(object sender, EventArgs e)
         {
             try
@@ -106,10 +97,7 @@ namespace Dispatcher
             Disconnect();
         }
 
-        // ----------------------------------------------------------------
-        // Отрисовка графиков
-        // ----------------------------------------------------------------
-
+        // Отрисовка графиков.
         private void panelChartTemperature_Paint(object sender, PaintEventArgs e)
         {
             DrawChart(e.Graphics, panelChartTemperature, _temperatures, 0.0, 100.0, Color.Red);
@@ -143,7 +131,7 @@ namespace Dispatcher
 
             g.Clear(Color.White);
 
-            // Сетка и подписи оси Y
+            // Сетка и подписи оси Y.
             using (Pen gridPen = new Pen(Color.LightGray, 1))
             {
                 const int gridLines = 5;
@@ -160,7 +148,7 @@ namespace Dispatcher
                 }
             }
 
-            // Оси
+            // Оси.
             using (Pen axisPen = new Pen(Color.Black, 1))
             {
                 g.DrawLine(axisPen, padLeft, padTop, padLeft, padTop + chartH);
@@ -172,7 +160,7 @@ namespace Dispatcher
                 return;
             }
 
-            // Линия данных
+            // Линия данных.
             PointF[] points = new PointF[values.Count];
             for (int i = 0; i < values.Count; i++)
             {
@@ -189,10 +177,7 @@ namespace Dispatcher
             }
         }
 
-        // ----------------------------------------------------------------
-        // Сетевая логика
-        // ----------------------------------------------------------------
-
+        // Сетевая логика.
         private void Disconnect()
         {
             _isConnected = false;
@@ -254,7 +239,7 @@ namespace Dispatcher
             }
             catch (Exception)
             {
-                // Соединение разорвано
+                // Соединение разорвано.
             }
             finally
             {
