@@ -1,0 +1,16 @@
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\bin\Debug\net8.0-windows\Dispatcher.exe
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\bin\Debug\net8.0-windows\Dispatcher.deps.json
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\bin\Debug\net8.0-windows\Dispatcher.runtimeconfig.json
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\bin\Debug\net8.0-windows\Dispatcher.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\bin\Debug\net8.0-windows\Dispatcher.pdb
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.AssemblyInfoInputs.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.AssemblyInfo.cs
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.csproj.CoreCompileInputs.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\refint\Dispatcher.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.pdb
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.genruntimeconfig.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\ref\Dispatcher.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.MainForm.resources
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Dispatcher\obj\Debug\net8.0-windows\Dispatcher.csproj.GenerateResource.cache

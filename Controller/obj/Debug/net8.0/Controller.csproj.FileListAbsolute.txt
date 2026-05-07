@@ -1,0 +1,14 @@
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\bin\Debug\net8.0\Controller.exe
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\bin\Debug\net8.0\Controller.deps.json
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\bin\Debug\net8.0\Controller.runtimeconfig.json
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\bin\Debug\net8.0\Controller.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\bin\Debug\net8.0\Controller.pdb
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.AssemblyInfoInputs.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.AssemblyInfo.cs
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.csproj.CoreCompileInputs.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\refint\Controller.dll
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.pdb
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\Controller.genruntimeconfig.cache
+C:\Users\lavaaash\source\repos\TaMPLab4_2\Controller\obj\Debug\net8.0\ref\Controller.dll
