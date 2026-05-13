@@ -17,6 +17,7 @@ namespace Dispatcher
 
         private readonly List<double> _temperatures = new List<double>();
         private readonly List<double> _pressures = new List<double>();
+        private readonly List<DateTime> _timestamps = new List<DateTime>();
 
         private TcpClient _tcpClient;
         private Thread _receiveThread;
@@ -27,7 +28,6 @@ namespace Dispatcher
             InitializeComponent();
         }
 
-        // Обработчики формы.
         private void MainForm_Load(object sender, EventArgs e)
         {
             LayoutCharts();
@@ -38,7 +38,6 @@ namespace Dispatcher
             Disconnect();
         }
 
-        // Разметка графиков — вызывается при загрузке и при изменении размера.
         private void panelCharts_Resize(object sender, EventArgs e)
         {
             LayoutCharts();
@@ -53,22 +52,16 @@ namespace Dispatcher
             int halfH = totalH / 2;
             int w = panelCharts.Width - margin * 2;
 
-            if (halfH < 10 || w < 10)
-            {
-                return;
-            }
+            if (halfH < 10 || w < 10) return;
 
-            // График температуры.
             labelTempChart.Location = new Point(margin, margin);
             panelChartTemperature.SetBounds(margin, margin + labelH, w, halfH);
 
-            // График давления.
             int secondTop = margin + labelH + halfH + margin;
             labelPressChart.Location = new Point(margin, secondTop);
             panelChartPressure.SetBounds(margin, secondTop + labelH, w, halfH);
         }
 
-        // Обработчики кнопок.
         private void buttonConnect_Click(object sender, EventArgs e)
         {
             try
@@ -87,8 +80,7 @@ namespace Dispatcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка подключения:\n{ex.Message}", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ошибка подключения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -97,41 +89,30 @@ namespace Dispatcher
             Disconnect();
         }
 
-        // Отрисовка графиков.
         private void panelChartTemperature_Paint(object sender, PaintEventArgs e)
         {
-            DrawChart(e.Graphics, panelChartTemperature, _temperatures, 0.0, 100.0, Color.Red);
+            DrawChart(e.Graphics, panelChartTemperature, _temperatures, 0.0, 100.0, Color.Red, _timestamps);
         }
 
         private void panelChartPressure_Paint(object sender, PaintEventArgs e)
         {
-            DrawChart(e.Graphics, panelChartPressure, _pressures, 0.0, 6.0, Color.Blue);
+            DrawChart(e.Graphics, panelChartPressure, _pressures, 0.0, 6.0, Color.Blue, _timestamps);
         }
 
-        private void DrawChart(
-            Graphics g,
-            Panel panel,
-            List<double> values,
-            double minValue,
-            double maxValue,
-            Color lineColor)
+        private void DrawChart(Graphics g, Panel panel, List<double> values, double minValue, double maxValue, Color lineColor, List<DateTime> timestamps)
         {
             const int padLeft = 45;
             const int padRight = 5;
             const int padTop = 5;
-            const int padBottom = 20;
+            const int padBottom = 28;
 
             int chartW = panel.Width - padLeft - padRight;
             int chartH = panel.Height - padTop - padBottom;
 
-            if (chartW <= 0 || chartH <= 0)
-            {
-                return;
-            }
+            if (chartW <= 0 || chartH <= 0) return;
 
             g.Clear(Color.White);
 
-            // Сетка и подписи оси Y.
             using (Pen gridPen = new Pen(Color.LightGray, 1))
             {
                 const int gridLines = 5;
@@ -143,24 +124,32 @@ namespace Dispatcher
                     double value = maxValue - i * (maxValue - minValue) / gridLines;
                     string label = value.ToString("F1", CultureInfo.InvariantCulture);
                     SizeF sz = g.MeasureString(label, this.Font);
-                    g.DrawString(label, this.Font, Brushes.Black,
-                        padLeft - sz.Width - 2, y - sz.Height / 2);
+                    g.DrawString(label, this.Font, Brushes.Black, padLeft - sz.Width - 2, y - sz.Height / 2);
                 }
             }
 
-            // Оси.
             using (Pen axisPen = new Pen(Color.Black, 1))
             {
                 g.DrawLine(axisPen, padLeft, padTop, padLeft, padTop + chartH);
                 g.DrawLine(axisPen, padLeft, padTop + chartH, padLeft + chartW, padTop + chartH);
             }
 
-            if (values.Count < 2)
+            if (timestamps.Count >= 2)
             {
-                return;
+                const int xLabels = 5;
+                for (int i = 0; i <= xLabels; i++)
+                {
+                    int dataIdx = (int)Math.Round((double)i / xLabels * (timestamps.Count - 1));
+                    if (dataIdx < 0 || dataIdx >= timestamps.Count) continue;
+                    float x = padLeft + (float)dataIdx / (MaxPoints - 1) * chartW;
+                    string label = timestamps[dataIdx].ToString("HH:mm:ss");
+                    SizeF sz = g.MeasureString(label, this.Font);
+                    g.DrawString(label, this.Font, Brushes.Gray, x - sz.Width / 2, padTop + chartH + 3);
+                }
             }
 
-            // Линия данных.
+            if (values.Count < 2) return;
+
             PointF[] points = new PointF[values.Count];
             for (int i = 0; i < values.Count; i++)
             {
@@ -177,7 +166,6 @@ namespace Dispatcher
             }
         }
 
-        // Сетевая логика.
         private void Disconnect()
         {
             _isConnected = false;
@@ -188,14 +176,8 @@ namespace Dispatcher
                 _tcpClient = null;
             }
 
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(UpdateUiOnDisconnect));
-            }
-            else
-            {
-                UpdateUiOnDisconnect();
-            }
+            if (this.InvokeRequired) this.Invoke(new Action(UpdateUiOnDisconnect));
+            else UpdateUiOnDisconnect();
         }
 
         private void UpdateUiOnDisconnect()
@@ -216,10 +198,7 @@ namespace Dispatcher
                 while (_isConnected)
                 {
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                    if (bytesRead == 0)
-                    {
-                        break;
-                    }
+                    if (bytesRead == 0) break;
 
                     received.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
 
@@ -237,10 +216,7 @@ namespace Dispatcher
                     received.Append(data);
                 }
             }
-            catch (Exception)
-            {
-                // Соединение разорвано.
-            }
+            catch (Exception) { }
             finally
             {
                 Disconnect();
@@ -249,31 +225,19 @@ namespace Dispatcher
 
         private void ProcessMessage(string message)
         {
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                return;
-            }
+            if (string.IsNullOrWhiteSpace(message)) return;
 
             string[] parts = message.Split(';');
-            if (parts.Length != 2)
-            {
-                return;
-            }
+            if (parts.Length != 2) return;
 
-            if (!double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out double temp))
-            {
-                return;
-            }
-
-            if (!double.TryParse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture, out double pressure))
-            {
-                return;
-            }
+            if (!double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out double temp)) return;
+            if (!double.TryParse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture, out double pressure)) return;
 
             this.Invoke(new Action(() =>
             {
                 AddValue(_temperatures, temp);
                 AddValue(_pressures, pressure);
+                AddTimestamp(_timestamps);
 
                 labelTemperature.Text = $"{temp:F2} °C";
                 labelPressure.Text = $"{pressure:F2} атм";
@@ -286,10 +250,13 @@ namespace Dispatcher
         private void AddValue(List<double> list, double value)
         {
             list.Add(value);
-            if (list.Count > MaxPoints)
-            {
-                list.RemoveAt(0);
-            }
+            if (list.Count > MaxPoints) list.RemoveAt(0);
+        }
+
+        private void AddTimestamp(List<DateTime> list)
+        {
+            list.Add(DateTime.Now);
+            if (list.Count > MaxPoints) list.RemoveAt(0);
         }
     }
 }
